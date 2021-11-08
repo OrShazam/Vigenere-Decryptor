@@ -30,7 +30,7 @@ void check_input(char* input){
 		exit(0);
 	}
 	for (int i = 0; i < strlen(input); i++){
-		if (input[i] > 'Z' || input[i] < 'A'){
+		if (!(input[i] <= 'Z' && input[i] >= 'A')){
 			print_fancy_bad("Input not in the correct format.");
 			print_fancy_bad("Should be only uppercase.");
 			exit(1);
