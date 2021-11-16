@@ -6,24 +6,6 @@
 #define LETTER_TO_VALUE(c) (c - 'A')
 #define VALUE_TO_LETTER(v) ('A' + v)
 
-void print_fancy_bad(char* message){
-	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(console, 14);
-	printf("[");
-	SetConsoleTextAttribute(console,12);
-	printf("-");
-	SetConsoleTextAttribute(console, 14);
-    printf("] %s\n", message);	
-}
-void print_fancy_good(char* message){
-	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(console, 14);
-	printf("[");
-	SetConsoleTextAttribute(console,10);
-	printf("+");
-	SetConsoleTextAttribute(console, 14);
-    printf("] %s\n", message);	
-}
 void check_input(char* input){
 	if (strlen(input) < 20){
 		print_fancy_bad("Analysis is useless for short messages.");
@@ -172,15 +154,10 @@ int main(int argc, char** argv) {
 	}
 	check_input(argv[1]);
 	int key_length = guess_key_length(argv[1]);
-	char message[50];
-	sprintf(message, "Guessed key length of %d...", key_length);
-	print_fancy_good(message);
-	memset(message,'\0',50);
+	printf("Guessed key length of %d...", key_length);
 	char* key = get_vigenere_key(argv[1], key_length);
-	sprintf(message, "Guessed key as %s...", key);
-	print_fancy_good(message);
+	printf("Guessed key as %s...", key);
 	char* decrypted = vigenere_decrypt(argv[1],key);
-	print_fancy_good("Decrypted Message.");
 	printf(decrypted);
 	return 0;
 }
