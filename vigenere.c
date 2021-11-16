@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <windows.h>
 #define MAX_INT 0x7fffffff
 #define MAX_KEY_LENGTH 20
 #define LETTER_TO_VALUE(c) (c - 'A')
@@ -8,13 +7,13 @@
 
 void check_input(char* input){
 	if (strlen(input) < 20){
-		print_fancy_bad("Analysis is useless for short messages.");
+		printf("Analysis is useless for short messages.");
 		exit(0);
 	}
 	for (int i = 0; i < strlen(input); i++){
 		if (!(input[i] <= 'Z' && input[i] >= 'A')){
-			print_fancy_bad("Input not in the correct format.");
-			print_fancy_bad("Should be only uppercase.");
+			printf("Input not in the correct format.");
+			printf("Should be only uppercase.");
 			exit(1);
 		}
 	}
